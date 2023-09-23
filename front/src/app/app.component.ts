@@ -7,9 +7,27 @@ import { Produit } from './modele/produit.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  monProduit!: Produit;
+  mesProduits!: Produit[];
 
   ngOnInit() {
-    this.monProduit = new Produit('Aubergine',10,'La cagette','Kg',new Date(),'aubergine.jpg');
+    this.mesProduits = [
+      {
+        nomProduit: 'Aubergine',
+        prixMoyen: 10,
+        enseigneMoinsChere:'La Cagette',
+        typePrix:'Kg',
+        dateMaj: new Date(),
+        photo: 'aubergine.jpg'
+      }
+      ,      
+      {
+        nomProduit: 'Aubergine2',
+        prixMoyen: 10,
+        enseigneMoinsChere:'La Cagette',
+        typePrix:'Kg',
+        dateMaj: new Date(),
+        photo: 'aubergine.jpg'
+      }
+    ]
   }
 }
