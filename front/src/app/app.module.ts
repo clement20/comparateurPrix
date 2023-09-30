@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { VueProduitComponent } from './vue-produit/vue-produit.component';
 import { ListeProduitsComponent } from './liste-produits/liste-produits.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
