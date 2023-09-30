@@ -2,6 +2,7 @@
     <h1>{{ produit.nom }}</h1>
     <img src="assets/images/{{ produit.photo }}" [alt]="produit.nom" [title]="produit.nom">
     <h2>Prix moyen : {{ produit.prixMoyen | number: '1.2-2' }} € ({{ produit.typePrix }})</h2>
-    <p>Le moins cher : {{produit.prixMoinsCher | number: '1.2-2' }} chez : <a href="">{{ produit.nomEnseigneMoinsChere }}</a></p>
+    <p>Le moins cher : {{produit.prixMoinsCher | number: '1.2-2' }} chez : <img title="{{ produit.nomEnseigneMoinsChere }}" src="assets/images/{{ produit.photoEnseigneMoinsChere }}"></p>
     <p>Mis à jour le {{ produit.dateMajReleve | date: 'dd/MM/yy' }}</p>
 </div>
+<br><br>

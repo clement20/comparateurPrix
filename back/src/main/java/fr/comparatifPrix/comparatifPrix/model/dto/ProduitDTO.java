@@ -12,6 +12,7 @@ public class ProduitDTO {
     private String typePrix;
     private Double prixMoinsCher;
     private String nomEnseigneMoinsChere;
+    private String photoEnseigneMoinsChere;
     private Double prixMoyen;
     private Date dateMajReleve;
 

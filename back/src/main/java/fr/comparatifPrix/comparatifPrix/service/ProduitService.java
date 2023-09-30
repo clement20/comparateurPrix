@@ -43,6 +43,8 @@ public class ProduitService {
             RelevePrix relevePrixMoinsCher = relevePrixRepository.getRelevePrixMoinsCherByIdProduit(produit.getId());
             produit.setPrixMoinsCher(relevePrixMoinsCher.getPrix());
             produit.setNomEnseigneMoinsChere(relevePrixMoinsCher.getEnseigne().getNom());
+            produit.setPhotoEnseigneMoinsChere(relevePrixMoinsCher.getEnseigne().getPhoto());
+            produit.setDateMajReleve(relevePrixMoinsCher.getDate());
         });
         return resultats;
     }
