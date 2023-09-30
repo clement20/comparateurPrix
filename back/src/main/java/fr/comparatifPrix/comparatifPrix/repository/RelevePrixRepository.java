@@ -27,7 +27,7 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     AND r.prix = (select min(r2.prix) FROM RelevePrix r2 where r2.produit.id=?1)
     """
     )
-    public RelevePrix getRelevePrixMoinsCherByIdProduit(int idProduit);
+    public List<RelevePrix> getRelevesPrixMoinsCherByIdProduit(int idProduit);
 
     @Query(value="""
     SELECT r

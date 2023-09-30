@@ -13,9 +13,7 @@ public class ProduitDTO {
     private String nom;
     private String photo;
     private String typePrix;
-    private Double prixMoinsCher;
-    private String nomEnseigneMoinsChere;
-    private String photoEnseigneMoinsChere;
+    private List<PrixDTO> prixMoinsChers = new ArrayList<>();
     private List<PrixDTO> prixPlusChers = new ArrayList<>();
     private Double prixMoyen;
     private Date dateMajReleve;

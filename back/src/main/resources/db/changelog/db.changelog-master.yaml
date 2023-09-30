@@ -103,7 +103,7 @@ databaseChangeLog:
             value: Carrefour
         - column:
             name: photo
-            value: carrefour.jpg
+            value: carrefour.png
         tableName: enseigne
     - insert:
         columns:
@@ -127,7 +127,7 @@ databaseChangeLog:
             value: Leclerc
         - column:
             name: photo
-            value: leclerc.jpg
+            value: leclerc.png
         tableName: enseigne
 - changeSet:
     id: 1696089742594-5

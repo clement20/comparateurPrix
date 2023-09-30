@@ -2,7 +2,7 @@
     <h1>{{ produit.nom }}</h1>
     <img class="photoProduit" src="assets/images/{{ produit.photo }}" [alt]="produit.nom" [title]="produit.nom">
     <p>Prix moyen : <span class="prix">{{ produit.prixMoyen | number: '1.2-2' }} €</span> ({{ produit.typePrix }})</p>
-    <p>Le - cher : <span class="prix">{{produit.prixMoinsCher | number: '1.2-2' }} €</span> chez : <img class="photoEnseigne" title="{{ produit.nomEnseigneMoinsChere }}" src="assets/images/{{ produit.photoEnseigneMoinsChere }}"></p>
+    <p>Le - cher : <span class="prix">{{produit.prixMoinsChers[0].montant | number: '1.2-2' }} €</span> chez :<span *ngFor="let prix of produit.prixMoinsChers"><img class="photoEnseigne" title="{{ prix.nomEnseigne}}" src="assets/images/{{ prix.photoEnseigne }}"></span></p>
     <p>Le + cher : <span class="prix">{{produit.prixPlusChers[0].montant | number: '1.2-2' }} €</span> chez :<span *ngFor="let prix of produit.prixPlusChers"> <img class="photoEnseigne" title="{{ prix.nomEnseigne }}" src="assets/images/{{ prix.photoEnseigne }}"/></span></p>
     <p>Mis à jour le {{ produit.dateMajReleve | date: 'dd/MM/yy' }}</p>
 </div>

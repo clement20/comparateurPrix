@@ -31,22 +31,36 @@ public class ProduitService {
         List<ProduitDTO> resultats = produits.stream().map(produit->modelMapper.map(produit,ProduitDTO.class)).toList();
         resultats.forEach( produit-> {
             produit.setPrixMoyen(relevePrixRepository.getPrixMoyenByIdProduit(produit.getId()));
-            RelevePrix relevePrixMoinsCher = relevePrixRepository.getRelevePrixMoinsCherByIdProduit(produit.getId());
-            produit.setPrixMoinsCher(relevePrixMoinsCher.getPrix());
-            produit.setNomEnseigneMoinsChere(relevePrixMoinsCher.getEnseigne().getNom());
-            produit.setPhotoEnseigneMoinsChere(relevePrixMoinsCher.getEnseigne().getPhoto());
-            produit.setDateMajReleve(relevePrixMoinsCher.getDate());
-            List<PrixDTO> prixDTOS = new ArrayList<>();
-            List<RelevePrix> relevesPrixPlusCher = relevePrixRepository.getRelevePrixPlusCherByIdProduit(produit.getId());
-            relevesPrixPlusCher.forEach(relevePrix -> {
-                PrixDTO prixDTO = new PrixDTO();
-                prixDTO.setNomEnseigne(relevePrix.getEnseigne().getNom());
-                prixDTO.setPhotoEnseigne(relevePrix.getEnseigne().getPhoto());
-                prixDTO.setMontant(relevePrix.getPrix());
-                prixDTOS.add(prixDTO);
-            });
-            produit.setPrixPlusChers(prixDTOS);
+            remplitPrixPlusChers(produit);
+            remplitPrixMoinsChers(produit);
         });
         return resultats;
+    }
+
+    private void remplitPrixPlusChers(ProduitDTO produit) {
+        List<PrixDTO> prixPlusChers = new ArrayList<>();
+        List<RelevePrix> relevesPrixPlusCher = relevePrixRepository.getRelevePrixPlusCherByIdProduit(produit.getId());
+        relevesPrixPlusCher.forEach(relevePrix -> {
+            PrixDTO prixDTO = new PrixDTO();
+            prixDTO.setNomEnseigne(relevePrix.getEnseigne().getNom());
+            prixDTO.setPhotoEnseigne(relevePrix.getEnseigne().getPhoto());
+            prixDTO.setMontant(relevePrix.getPrix());
+            prixPlusChers.add(prixDTO);
+        });
+        produit.setPrixPlusChers(prixPlusChers);
+        produit.setDateMajReleve(relevesPrixPlusCher.get(0).getDate());
+    }
+
+    private void remplitPrixMoinsChers(ProduitDTO produit) {
+        List<PrixDTO> prixMoinsChers = new ArrayList<>();
+        List<RelevePrix> relevesPrixMoinsCher = relevePrixRepository.getRelevesPrixMoinsCherByIdProduit(produit.getId());
+        relevesPrixMoinsCher.forEach(relevePrix -> {
+            PrixDTO prixDTO = new PrixDTO();
+            prixDTO.setNomEnseigne(relevePrix.getEnseigne().getNom());
+            prixDTO.setPhotoEnseigne(relevePrix.getEnseigne().getPhoto());
+            prixDTO.setMontant(relevePrix.getPrix());
+            prixMoinsChers.add(prixDTO);
+        });
+        produit.setPrixMoinsChers(prixMoinsChers);
     }
 }
