@@ -1,1 +1,814 @@
 databaseChangeLog:
+- changeSet:
+    id: 1696089742594-1
+    author: Clément (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: nom
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: photo
+            type: VARCHAR
+        tableName: enseigne
+- changeSet:
+    id: 1696089742594-2
+    author: Clément (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+            name: id
+            type: INTEGER
+        - column:
+            name: nom
+            type: VARCHAR
+        - column:
+            name: photo
+            type: VARCHAR
+        - column:
+            name: type_prix
+            type: VARCHAR
+        tableName: produit
+- changeSet:
+    id: 1696089742594-3
+    author: Clément (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: prix
+            type: numeric
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: releve_prix_pk
+            name: produit
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: releve_prix_pk
+            name: enseigne
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: releve_prix_pk
+            name: date
+            type: date
+        tableName: releve_prix
+- changeSet:
+    id: 1696089742594-4
+    author: Clément (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: nom
+            value: La Cagette
+        - column:
+            name: photo
+            value: cagette.jpg
+        tableName: enseigne
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 2
+        - column:
+            name: nom
+            value: Carrefour
+        - column:
+            name: photo
+            value: carrefour.jpg
+        tableName: enseigne
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 3
+        - column:
+            name: nom
+            value: Auchan
+        - column:
+            name: photo
+            value: auchan.jpg
+        tableName: enseigne
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 4
+        - column:
+            name: nom
+            value: Leclerc
+        - column:
+            name: photo
+            value: leclerc.jpg
+        tableName: enseigne
+- changeSet:
+    id: 1696089742594-5
+    author: Clément (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: nom
+            value: Aubergine
+        - column:
+            name: photo
+            value: aubergine.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 2
+        - column:
+            name: nom
+            value: Courgette
+        - column:
+            name: photo
+            value: courgette.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 3
+        - column:
+            name: nom
+            value: Oignon jaune
+        - column:
+            name: photo
+            value: oignon.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 4
+        - column:
+            name: nom
+            value: Ail
+        - column:
+            name: photo
+            value: ail.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 5
+        - column:
+            name: nom
+            value: Tomate cerise
+        - column:
+            name: photo
+            value: tomate.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 6
+        - column:
+            name: nom
+            value: Carotte
+        - column:
+            name: photo
+            value: carotte.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 7
+        - column:
+            name: nom
+            value: Concombre long
+        - column:
+            name: photo
+            value: concombre.jpg
+        - column:
+            name: type_prix
+            value: unité
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 8
+        - column:
+            name: nom
+            value: Patate douce
+        - column:
+            name: photo
+            value: patate_douce.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 9
+        - column:
+            name: nom
+            value: Poireau
+        - column:
+            name: photo
+            value: poireau.jpg
+        - column:
+            name: type_prix
+            value: kg
+        tableName: produit
+- changeSet:
+    id: 1696089742594-6
+    author: Clément (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 4.58
+        - column:
+            name: produit
+            valueNumeric: 1
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.49
+        - column:
+            name: produit
+            valueNumeric: 2
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.69
+        - column:
+            name: produit
+            valueNumeric: 3
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 16.6
+        - column:
+            name: produit
+            valueNumeric: 4
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 12.5
+        - column:
+            name: produit
+            valueNumeric: 5
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.09
+        - column:
+            name: produit
+            valueNumeric: 6
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 1.59
+        - column:
+            name: produit
+            valueNumeric: 7
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 4.99
+        - column:
+            name: produit
+            valueNumeric: 8
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.69
+        - column:
+            name: produit
+            valueNumeric: 9
+        - column:
+            name: enseigne
+            valueNumeric: 2
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 6.98
+        - column:
+            name: produit
+            valueNumeric: 1
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 4.39
+        - column:
+            name: produit
+            valueNumeric: 2
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.49
+        - column:
+            name: produit
+            valueNumeric: 3
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 12.45
+        - column:
+            name: produit
+            valueNumeric: 4
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 9.96
+        - column:
+            name: produit
+            valueNumeric: 5
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.67
+        - column:
+            name: produit
+            valueNumeric: 6
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.29
+        - column:
+            name: produit
+            valueNumeric: 7
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 7.98
+        - column:
+            name: produit
+            valueNumeric: 8
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 5.32
+        - column:
+            name: produit
+            valueNumeric: 9
+        - column:
+            name: enseigne
+            valueNumeric: 3
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 6.00
+        - column:
+            name: produit
+            valueNumeric: 1
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.72
+        - column:
+            name: produit
+            valueNumeric: 2
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.49
+        - column:
+            name: produit
+            valueNumeric: 3
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 13.96
+        - column:
+            name: produit
+            valueNumeric: 4
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 7.96
+        - column:
+            name: produit
+            valueNumeric: 5
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.29
+        - column:
+            name: produit
+            valueNumeric: 6
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 1.69
+        - column:
+            name: produit
+            valueNumeric: 7
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 5.78
+        - column:
+            name: produit
+            valueNumeric: 8
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 5.32
+        - column:
+            name: produit
+            valueNumeric: 9
+        - column:
+            name: enseigne
+            valueNumeric: 4
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 4.47
+        - column:
+            name: produit
+            valueNumeric: 1
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.86
+        - column:
+            name: produit
+            valueNumeric: 2
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 2.28
+        - column:
+            name: produit
+            valueNumeric: 3
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 12.54
+        - column:
+            name: produit
+            valueNumeric: 4
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 7.28
+        - column:
+            name: produit
+            valueNumeric: 5
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 1.88
+        - column:
+            name: produit
+            valueNumeric: 6
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 1.26
+        - column:
+            name: produit
+            valueNumeric: 7
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.5
+        - column:
+            name: produit
+            valueNumeric: 8
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
+    - insert:
+        columns:
+        - column:
+            name: prix
+            valueNumeric: 3.2
+        - column:
+            name: produit
+            valueNumeric: 9
+        - column:
+            name: enseigne
+            valueNumeric: 1
+        - column:
+            name: date
+            valueDate: 2023-09-26
+        tableName: releve_prix
