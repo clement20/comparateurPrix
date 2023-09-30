@@ -1,6 +1,16 @@
 .produit {
-    width: 25%;
-    img {
-      width: 30%;
-    }
+  width: 25%;
+}
+
+.prix {
+  font-weight: bold;
+} 
+ 
+.photoProduit {
+  width: 25%;
+}
+
+.photoEnseigne {
+  height: 30px;
+  vertical-align: middle;
 }
