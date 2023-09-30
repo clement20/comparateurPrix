@@ -1,6 +1,7 @@
 package fr.comparatifPrix.comparatifPrix.controller;
 
 import fr.comparatifPrix.comparatifPrix.model.Produit;
+import fr.comparatifPrix.comparatifPrix.model.dto.ProduitDTO;
 import fr.comparatifPrix.comparatifPrix.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +16,7 @@ public class ProduitController {
     private ProduitService produitService;
 
     @GetMapping("/produits")
-    public Iterable<Produit> getProduits() {
+    public Iterable<ProduitDTO> getProduits() {
         return produitService.getProduits();
     }
 }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class ProduitService {
 
   constructor(private http:HttpClient) {}
-
+/*
    produits: Produit[] = [
         {
           nomProduit: 'Aubergine',
@@ -92,6 +92,7 @@ export class ProduitService {
           photo: 'poireau.jpg'
         }
       ];
+      */
       getAllProduits(): Observable<Produit[]> {
         return this.http.get<Produit[]>('http://localhost:8080/produits');
        // return this.produits;

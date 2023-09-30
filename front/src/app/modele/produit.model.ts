@@ -1,9 +1,10 @@
 export class Produit {
-    constructor(public nomProduit: string,
+    constructor(public nom: string,
         public prixMoyen: number,
-        public enseigneMoinsChere: string,
+        public prixMoinsCher: number,
+        public nomEnseigneMoinsChere: string,
         public typePrix: string,
-        public dateMaj: Date,
+        public dateMajReleve: Date,
         public photo: string) {}
     
 }

@@ -4,16 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 @Entity
-public class Produit {
-
+public class Enseigne {
     @Id
     private int id;
-    private String nom;
-    private String photo;
-    private String typePrix;
 
+    private String nom;
+
+    private String photo;
 }
