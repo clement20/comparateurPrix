@@ -8,7 +8,7 @@ import { Enseigne } from '../modele/enseigne.model';
 
 })
 export class VueEnseigneComponent implements OnInit {
-
+  Math: any = Math
   ngOnInit(): void {
 
   }
