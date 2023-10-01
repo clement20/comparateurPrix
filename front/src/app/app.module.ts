@@ -9,13 +9,17 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ListeEnseignesComponent } from './liste-enseignes/liste-enseignes.component';
+import { VueEnseigneComponent } from './vue-enseigne/vue-enseigne.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VueProduitComponent,
     ListeProduitsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListeEnseignesComponent,
+    VueEnseigneComponent
   ],
   imports: [
     BrowserModule,

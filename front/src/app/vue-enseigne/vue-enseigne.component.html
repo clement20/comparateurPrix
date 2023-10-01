@@ -1,0 +1,7 @@
+<div class="enseigne">
+    <h1>{{ enseigne.nom }}</h1>
+    <img class="photoEnseigne" src="assets/images/{{ enseigne.photo }}" [alt]="enseigne.nom" [title]="enseigne.nom">
+    <p>En moyenne : <span>{{ enseigne.ecartALaMoyenne  }} €</span> cher que dans les autres magasins</p>
+    <p>Le - cher sur {{enseigne.nbProduitsMoinsChers}} / {{ enseigne.nbTotalProduits}} produits </p>
+    <p>Le + cher sur {{enseigne.nbProduitsPlusChers}} / {{ enseigne.nbTotalProduits}} produits </p>
+</div>

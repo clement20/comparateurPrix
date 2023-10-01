@@ -1,4 +1,4 @@
-import {  Prix } from "./enseigne.model";
+import {  Prix } from "./prix.model";
 
 export class Produit {
     constructor(public nom: string,
