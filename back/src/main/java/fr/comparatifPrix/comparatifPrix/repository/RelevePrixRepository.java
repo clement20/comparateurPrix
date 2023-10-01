@@ -41,13 +41,24 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     public List<RelevePrix> getRelevePrixPlusCherByIdProduit(int idProduit);
 
     @Query(value="""
-    SELECT r
+    SELECT r.prix
     FROM 
     RelevePrix r  
     WHERE r.produit.id = ?1 
     AND r.date = (select max(r2.date) FROM RelevePrix r2)
-    AND r.prix = (select max(r2.prix) FROM RelevePrix r2 where r2.produit.id=?1)
+    AND r.enseigne.id= ?2
     """
     )
-    public Double getEcartALaMoyenne(int idEnseigne);
+    public Double getMontantParProduitParEnseigne(int idProduit, int idEnseigne);
+
+    @Query(value="""
+    SELECT avg(r.prix)
+    FROM 
+    RelevePrix r  
+    WHERE r.produit.id = ?1 
+    AND r.date = (select max(r2.date) FROM RelevePrix r2)
+    AND r.enseigne.id != ?2
+    """
+    )
+    public Double getMoyenneAutresEnseignesParProduit(int idProduit, int idEnseigne);
 }

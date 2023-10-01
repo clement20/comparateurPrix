@@ -9,8 +9,6 @@ import java.util.Date;
 @Data
 @IdClass(RelevePrixID.class)
 public class RelevePrix {
-
-    private double prix;
     @Id
     @ManyToOne
     @JoinColumn(name = "produit")
@@ -21,4 +19,6 @@ public class RelevePrix {
     private Enseigne enseigne;
     @Id
     private Date date;
+
+    private double prix;
 }

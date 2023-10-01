@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class EnseigneDTO {
+    private int id;
     private String nom;
     private String photo;
     private Double ecartALaMoyenne;
