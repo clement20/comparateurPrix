@@ -38,8 +38,31 @@ public class EnseigneService {
         List<EnseigneDTO> resultats = enseignes.stream().map(enseigne->modelMapper.map(enseigne,EnseigneDTO.class)).toList();
         resultats.forEach(resultat -> {
             resultat.setEcartALaMoyenne(getEcartALaMoyenne(resultat.getId()));
+            resultat.setNbProduitsMoinsChers(getNbPrixMoinsChersByEnseigne(resultat.getId()));
+            resultat.setNbProduitsPlusChers(getNbPrixPlusChersByEnseigne(resultat.getId()));
+            resultat.setNbTotalProduits((int)produitRepository.count());
         });
         return resultats;
+    }
+
+    private int getNbPrixMoinsChersByEnseigne(int idEnseigne) {
+        return (int)(produitRepository.findAll()
+                .stream()
+                .map(produit -> relevePrixRepository.getRelevesPrixMoinsCherByIdProduit(produit.getId()))
+                .flatMap(List::stream)
+                .filter(releve -> releve.getEnseigne().getId()==idEnseigne)
+                .count());
+
+    }
+
+    private int getNbPrixPlusChersByEnseigne(int idEnseigne) {
+        return (int)(produitRepository.findAll()
+                .stream()
+                .map(produit -> relevePrixRepository.getRelevePrixPlusCherByIdProduit(produit.getId()))
+                .flatMap(List::stream)
+                .filter(releve -> releve.getEnseigne().getId()==idEnseigne)
+                .count());
+
     }
 
     private Double getEcartALaMoyenne(int idEnseigne) {

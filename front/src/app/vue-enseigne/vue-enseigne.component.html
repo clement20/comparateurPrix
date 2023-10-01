@@ -2,7 +2,6 @@
     <h1>{{ enseigne.nom }}</h1>
     <img class="photoEnseigne" src="assets/images/{{ enseigne.photo }}" [alt]="enseigne.nom" [title]="enseigne.nom">
     <p>Ca coute en moyenne <span>{{ (100 * Math.abs(enseigne.ecartALaMoyenne)) | number: '1.2-2' }} % {{(enseigne.ecartALaMoyenne>0) ? 'moins' : 'plus' }} </span> cher d'y faire ses courses par rapport aux autres magasins</p>
-
     <p>Le - cher sur {{enseigne.nbProduitsMoinsChers}} / {{ enseigne.nbTotalProduits}} produits </p>
     <p>Le + cher sur {{enseigne.nbProduitsPlusChers}} / {{ enseigne.nbTotalProduits}} produits </p>
 </div>

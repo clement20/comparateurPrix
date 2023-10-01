@@ -61,4 +61,6 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     """
     )
     public Double getMoyenneAutresEnseignesParProduit(int idProduit, int idEnseigne);
+
+
 }
