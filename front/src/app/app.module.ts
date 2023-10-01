@@ -8,6 +8,8 @@ import { ListeProduitsComponent } from './liste-produits/liste-produits.componen
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,7 @@
-<app-vue-produit *ngFor="let unProduit of produits$ |async" [produit]="unProduit"></app-vue-produit>
+<!--<app-vue-produit *ngFor="let unProduit of produits$ |async" [produit]="unProduit"></app-vue-produit>-->
+<mat-grid-list cols="3" gutterSize="0">
+    <mat-grid-tile *ngFor="let unProduit of produits$ | async">
+      <!-- Contenu de chaque tuile -->
+      <app-vue-produit [produit]="unProduit"></app-vue-produit>
+    </mat-grid-tile>
+  </mat-grid-list>
