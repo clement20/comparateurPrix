@@ -5,6 +5,7 @@ import fr.comparatifPrix.comparatifPrix.model.RelevePrixID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Date;
 import java.util.List;
 
 public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePrixID> {
@@ -13,32 +14,41 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     FROM 
     Produit p join RelevePrix r on p.id=r.produit.id 
     WHERE p.id = ?1 
-    AND r.date = (select max(r2.date) FROM RelevePrix r2)
+    AND r.date = ?2
     """
     )
-    public Double getPrixMoyenByIdProduit(int idProduit);
+    public Double getPrixMoyenByIdProduit(int idProduit, Date date);
 
     @Query(value="""
     SELECT r
     FROM 
     RelevePrix r  
     WHERE r.produit.id = ?1 
-    AND r.date = (select max(r2.date) FROM RelevePrix r2)
-    AND r.prix = (select min(r2.prix) FROM RelevePrix r2 where r2.produit.id=?1)
+    and r.prix= ?2
+    AND r.date = ?3
     """
     )
-    public List<RelevePrix> getRelevesPrixMoinsCherByIdProduit(int idProduit);
+    public List<RelevePrix> getRelevesPrixByIdProduitMontantDate(int idProduit, Double montant, Date date);
 
     @Query(value="""
-    SELECT r
+    SELECT max(r.prix)
     FROM 
     RelevePrix r  
     WHERE r.produit.id = ?1 
-    AND r.date = (select max(r2.date) FROM RelevePrix r2)
-    AND r.prix = (select max(r2.prix) FROM RelevePrix r2 where r2.produit.id=?1)
+    AND r.date = ?2
     """
     )
-    public List<RelevePrix> getRelevePrixPlusCherByIdProduit(int idProduit);
+    public Double getMaxMontantByIdProduitDate(int idProduit, Date date);
+
+    @Query(value="""
+    SELECT min(r.prix)
+    FROM 
+    RelevePrix r  
+    WHERE r.produit.id = ?1 
+    AND r.date = ?2
+    """
+    )
+    public Double getMinMontantByIdProduitDate(int idProduit, Date date);
 
     @Query(value="""
     SELECT r.prix
@@ -62,5 +72,11 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     )
     public Double getMoyenneAutresEnseignesParProduit(int idProduit, int idEnseigne);
 
-
+    @Query(value="""
+    SELECT max(r.date)
+    FROM 
+    RelevePrix r  
+    """
+    )
+    public Date getMaxDate();
 }

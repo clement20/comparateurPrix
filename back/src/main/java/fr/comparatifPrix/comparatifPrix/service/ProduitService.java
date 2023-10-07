@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,18 +29,19 @@ public class ProduitService {
     public List<ProduitDTO> getProduits() {
         List<Produit> produits = produitRepository.findAll();
         List<RelevePrix> releves = relevePrixRepository.findAll();
+        Date dateDernierReleve = relevePrixRepository.getMaxDate();
         List<ProduitDTO> resultats = produits.stream().map(produit->modelMapper.map(produit,ProduitDTO.class)).toList();
         resultats.forEach( produit-> {
-            produit.setPrixMoyen(relevePrixRepository.getPrixMoyenByIdProduit(produit.getId()));
-            remplitPrixPlusChers(produit);
-            remplitPrixMoinsChers(produit);
+            produit.setPrixMoyen(relevePrixRepository.getPrixMoyenByIdProduit(produit.getId(),dateDernierReleve));
+            remplitPrixPlusChers(produit,dateDernierReleve);
+            remplitPrixMoinsChers(produit,dateDernierReleve);
         });
         return resultats;
     }
 
-    private void remplitPrixPlusChers(ProduitDTO produit) {
+    private void remplitPrixPlusChers(ProduitDTO produit,Date date) {
         List<PrixDTO> prixPlusChers = new ArrayList<>();
-        List<RelevePrix> relevesPrixPlusCher = relevePrixRepository.getRelevePrixPlusCherByIdProduit(produit.getId());
+        List<RelevePrix> relevesPrixPlusCher = getRelevePrixPlusChers(produit.getId(),date);
         relevesPrixPlusCher.forEach(relevePrix -> {
             PrixDTO prixDTO = new PrixDTO();
             prixDTO.setNomEnseigne(relevePrix.getEnseigne().getNom());
@@ -51,9 +53,15 @@ public class ProduitService {
         produit.setDateMajReleve(relevesPrixPlusCher.get(0).getDate());
     }
 
-    private void remplitPrixMoinsChers(ProduitDTO produit) {
+    public List<RelevePrix> getRelevePrixPlusChers(int idProduit, Date date) {
+        Double prixPlusCher = relevePrixRepository.getMaxMontantByIdProduitDate(idProduit,date);
+        List<RelevePrix> relevesPrixPlusCher = relevePrixRepository.getRelevesPrixByIdProduitMontantDate(idProduit,prixPlusCher,date);
+        return relevesPrixPlusCher;
+    }
+
+    public void remplitPrixMoinsChers(ProduitDTO produit, Date date) {
         List<PrixDTO> prixMoinsChers = new ArrayList<>();
-        List<RelevePrix> relevesPrixMoinsCher = relevePrixRepository.getRelevesPrixMoinsCherByIdProduit(produit.getId());
+        List<RelevePrix> relevesPrixMoinsCher = getRelevePrixMoinsChers(produit.getId(),date);
         relevesPrixMoinsCher.forEach(relevePrix -> {
             PrixDTO prixDTO = new PrixDTO();
             prixDTO.setNomEnseigne(relevePrix.getEnseigne().getNom());
@@ -62,5 +70,10 @@ public class ProduitService {
             prixMoinsChers.add(prixDTO);
         });
         produit.setPrixMoinsChers(prixMoinsChers);
+    }
+
+    public List<RelevePrix> getRelevePrixMoinsChers(int idProduit, Date date) {
+        Double prixMoinsCher = relevePrixRepository.getMinMontantByIdProduitDate(idProduit,date);
+        return relevePrixRepository.getRelevesPrixByIdProduitMontantDate(idProduit, prixMoinsCher,date);
     }
 }
