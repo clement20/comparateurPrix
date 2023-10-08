@@ -812,3 +812,9 @@ databaseChangeLog:
             name: date
             valueDate: 2023-09-26
         tableName: releve_prix
+- changeSet:
+      id: 2023-10-03
+      author: Clément (generated)
+      changes:
+      - sqlFile:
+            path: db\changelog\2023-10-03.sql
