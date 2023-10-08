@@ -55,22 +55,22 @@ public interface RelevePrixRepository extends JpaRepository<RelevePrix, RelevePr
     FROM 
     RelevePrix r  
     WHERE r.produit.id = ?1 
-    AND r.date = (select max(r2.date) FROM RelevePrix r2)
     AND r.enseigne.id= ?2
+    AND r.date = ?3
     """
     )
-    public Double getMontantParProduitParEnseigne(int idProduit, int idEnseigne);
+    public Double getMontantParProduitParEnseigne(int idProduit, int idEnseigne, Date date);
 
     @Query(value="""
     SELECT avg(r.prix)
     FROM 
     RelevePrix r  
     WHERE r.produit.id = ?1 
-    AND r.date = (select max(r2.date) FROM RelevePrix r2)
     AND r.enseigne.id != ?2
+    AND r.date = ?3
     """
     )
-    public Double getMoyenneAutresEnseignesParProduit(int idProduit, int idEnseigne);
+    public Double getMoyenneAutresEnseignesParProduit(int idProduit, int idEnseigne, Date date);
 
     @Query(value="""
     SELECT max(r.date)

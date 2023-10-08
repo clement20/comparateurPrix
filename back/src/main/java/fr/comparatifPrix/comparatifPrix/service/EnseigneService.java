@@ -10,6 +10,8 @@ import fr.comparatifPrix.comparatifPrix.repository.EnseigneRepository;
 import fr.comparatifPrix.comparatifPrix.repository.ProduitRepository;
 import fr.comparatifPrix.comparatifPrix.repository.RelevePrixRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class EnseigneService {
+
+    Logger logger = LoggerFactory.getLogger(EnseigneService.class);
 
     @Autowired
     private EnseigneRepository enseigneRepository;
@@ -71,10 +75,16 @@ public class EnseigneService {
     }
 
     private Double getEcartALaMoyenne(int idEnseigne) {
+        Date dateDernierReleve = relevePrixRepository.getMaxDate();
+        logger.info("Max date {}",dateDernierReleve );
         List<Double> moyennes = new ArrayList<>();
+        logger.info("Enseigne {}",idEnseigne );
         produitRepository.findAll().forEach( produit-> {
-            Double montantProduitEnseigne = relevePrixRepository.getMontantParProduitParEnseigne(produit.getId(),idEnseigne);
-            Double moyenneProduitAutresEnseignes = relevePrixRepository.getMoyenneAutresEnseignesParProduit(produit.getId(),idEnseigne);
+            logger.info("Produit {}",produit.getNom() );
+            Double montantProduitEnseigne = relevePrixRepository.getMontantParProduitParEnseigne(produit.getId(),idEnseigne,dateDernierReleve);
+            logger.info("Montant enseigne {}",montantProduitEnseigne );
+            Double moyenneProduitAutresEnseignes = relevePrixRepository.getMoyenneAutresEnseignesParProduit(produit.getId(),idEnseigne,dateDernierReleve);
+            logger.info("Montant autres enseignes {}",moyenneProduitAutresEnseignes );
             moyennes.add((moyenneProduitAutresEnseignes/montantProduitEnseigne)-1);
         });
         DoubleSummaryStatistics doubleSummaryStatistics = moyennes.stream().collect(Collectors.summarizingDouble(Double::doubleValue));
