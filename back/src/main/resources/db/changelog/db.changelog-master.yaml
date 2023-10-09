@@ -818,3 +818,9 @@ databaseChangeLog:
       changes:
       - sqlFile:
             path: db\changelog\2023-10-03.sql
+- changeSet:
+      id: 2023-10-09
+      author: Clément (generated)
+      changes:
+      - sqlFile:
+            path: db\changelog\2023-10-09.sql
